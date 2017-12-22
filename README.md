@@ -7,7 +7,7 @@ Our repo contains the front-end part of this application and a submodule with a 
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)/)
+* [Node.js](https://nodejs.org/) (with NPM / Yarn))
 * [docker-compose](https://docs.docker.com/compose/install/)
 
 ## Installation
