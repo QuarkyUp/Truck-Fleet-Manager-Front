@@ -43,7 +43,7 @@ Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Ly
 * Marseille
 * Nantes
 * Paris
-* Toulouse
+* Toulouse  
 as *start* and *end* attribute in the URL
 
 ### Frontend
