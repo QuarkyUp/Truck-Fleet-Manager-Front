@@ -1,7 +1,12 @@
 # Truck-Fleet-Manager
 
-Our repo contains the front-end part of this application and a submodule with a docker container composed of our back-end part(algo-gen + server + web-service)
+Our application propose FMaaS (Fleet Manager as a Service).
 
+Our backend is able to compute the best path for your trucks in order to maximize profit and lower travelled distance.
+We extensively use genetic algorithm to make it happen.
+
+As for our backend, we use json-api and mongodb to manage our API's and your trucks data.
+Our frontend is a web application based on the Ember framework. We use Google Maps API in order to display the datas on screen and Bootstrap beautify it.
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
@@ -12,14 +17,27 @@ You will need the following things properly installed on your computer.
 
 ## Installation
 
+Clone this repository with its submodules (Backend as Docker-Compose) recursively using :
 * `git clone --recursive https://github.com/QuarkyUp/Truck-Fleet-Manager-Front/`
+
+CD to the cloned repository using :
 * `cd Truck-Fleet-Manager-Front`
+
+Install dependencies :
 * `yarn`
-* `cd Docker-compose/`
-* `docker-compose up` (ctrl + c for stopping)
 
 ## Running / Development
 
+# Backend 
+Start docker-compose which contains json-api, mongodb and finance microservice using :
+* `cd Docker-compose/`
+* `docker-compose up` (ctrl + c for stopping)
+
+Visit your app at [http://localhost:4200](http://localhost:4200)using :
 * `ember serve`
 
-## To know more about our genetic algorithm - [link](https://github.com/Cerclique/Docker-compose/blob/4f908fb568e48f9e61ba763fd7495d262d69672e/README.md)
+### Credits
+
+* `Thierry Gonard : `https://github.com/tuxnut
+* `Thomas Le Flohic : `https://github.com/QuarkyUp
+* `Aurelien Vernizeau : `https://github.com/Cerclique

@@ -10,8 +10,10 @@ export default Component.extend({
   zoom: 9,
   buttonState: "default",
   truckList: ['Paris', 'Lille', 'Lyon', 'Bordeaux', 'Brest', 'Strasbourg', 'Toulouse', 'Strasbourg'],
+  destinationList: ['Paris', 'Lille', 'Lyon', 'Bordeaux', 'Brest', 'Strasbourg', 'Toulouse', 'Strasbourg'],
   selectedTruckList: [],
-  returnedPath: null,
+  selectedDestination: [],
+  returnedPath: [],
   customOptions: computed(function() {
     if (google) {
       return { mapTypeId: google.maps.MapTypeId.ROADMAP};
@@ -21,14 +23,21 @@ export default Component.extend({
 
   }),
   actions: {
+    selectDestination(selectedDestination) {
+      this.set('selectedDestination', selectedDestination);
+      console.log(this.get('selectedDestination'));
+    },
     selectTrucks(selectedTrucks) {
       this.set('selectedTruckList', selectedTrucks);
       console.log(this.get('selectedTruckList'));
     },
-    pullData() {
+    pullTruckStartPosition() {
       console.log('Pull');
-
-      all(this.get('selectedTruckList').map(city => {
+      if (this.get('selectedDestination').length == 0) {
+        window.alert('Please select a destination');
+        return;
+      }
+      all(this.get('selectedDestination').map(city => {
         return Ember.$.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyA8PIvLl5iLB3iCwRdiPLQTFV68Btw_RjY').then(result => result.results[0]);
       })).then((...res) => {
         let locationData = res[0];
@@ -36,9 +45,10 @@ export default Component.extend({
         this.set('returnedPath', result);
       });
     },
-    displayData() {
+    displayTruckPathOnMap() {
       console.log('Display');
       console.log(this.get('returnedPath'));
+
     }
   }
 });
