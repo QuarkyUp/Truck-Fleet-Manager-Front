@@ -2,6 +2,8 @@
 
 Our repo contains the front-end part of this application and a submodule with a docker container composed of our back-end part(algo-gen + server + web-service)
 
+** Project not completed** : nous souhaitons continuer (un peu) le développement du projet
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
