@@ -1,0 +1,3 @@
+[submodule "Docker-compose"]
+	path = Docker-compose
+	url = https://github.com/Cerclique/Docker-compose

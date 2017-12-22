@@ -2,6 +2,14 @@
   height:300px;
 }
 
+.g-map{
+  height: 300px;
+}
+.g-map-canvas {
+  width: 100%;
+  height: 100%;
+}
+
 #flexcanvas{
   width: 100%;
   height: 600px !important;

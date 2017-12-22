@@ -1,6 +1,7 @@
 import { all } from 'rsvp';
 import Component from '@ember/component';
-import Ember from 'ember';
+import Ember from 'ember'
+const { computed } = Ember;
 
 
 export default Component.extend({
@@ -11,6 +12,11 @@ export default Component.extend({
   truckList: ['Paris', 'Lille', 'Lyon', 'Bordeaux', 'Brest', 'Strasbourg', 'Toulouse', 'Strasbourg'],
   selectedTruckList: [],
   returnedPath: null,
+  customOptions: computed(function() {
+    if (google) {
+      return { mapTypeId: google.maps.MapTypeId.ROADMAP};
+    }
+  }),
   orInit: Ember.on('init', () => {
 
   }),
