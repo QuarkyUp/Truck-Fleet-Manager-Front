@@ -1,0 +1,27 @@
+{{g-maps name="my-map" lat=lat lng=lng zoom=zoom}}
+
+<div id="container" class="flexChild rowParent">
+
+  <div id="rowChild20481" class="flexChild">
+    {{#power-select-multiple options=truckList selected=selectedTruckList placeholder="Select some trucks..."
+                             onchange=(action "selectTrucks") as |name| }}
+      {{name}}
+    {{/power-select-multiple}}
+  </div>
+
+  <div id="rowChild23096" class="flexChild button-block">
+    {{bs-button type="primary" icon="glyphicon glyphicon-download"
+                textState=buttonState defaultText="Download"
+                loadingText="Loading..." onClick=(action "pullData") }}
+
+    {{bs-button type="primary" icon="glyphicon glyphicon-download"
+                textState=buttonState defaultText="Download"
+                loadingText="Loading..." onClick=(action "displayData") }}
+  </div>
+  <div id="rowChild10329" class="flexChild">
+
+  </div>
+</div>
+
+
+{{yield}}
