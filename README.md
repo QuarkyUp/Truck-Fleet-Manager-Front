@@ -16,7 +16,7 @@ You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/) (with NPM / Yarn))
-* [docker-compose](https://docs.docker.com/compose/install/)
+* [docker-compose](https://docs.docker.com/compose/install/) (with Docker)
 
 ## Installation
 
@@ -29,15 +29,19 @@ CD to the cloned repository using :
 Install dependencies :
 * `yarn` or `npm install`
 
-## Running / Development
+## Running
 
-# Backend 
+### Backend 
 Start docker-compose which contains json-api, mongodb and finance microservice using :
 * `cd Docker-compose/`
 * `docker-compose up` (ctrl + c for stopping)
+Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Lyon) using :
+* start=[Bordeaux|Lille|Lyon|Marseille|Nantes|Paris|Toulouse]
+* end=[Bordeaux|Lille|Lyon|Marseille|Nantes|Paris|Toulouse]
 
-Visit your app at [http://localhost:4200](http://localhost:4200)using :
-* `ember serve`
+### Frontend
+Visit your app at [http://localhost:4200](http://localhost:4200) using :
+* `yarn start`
 
 ### Credits
 
