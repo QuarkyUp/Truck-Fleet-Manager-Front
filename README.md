@@ -50,4 +50,4 @@ Specify what it takes to deploy your app.
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
   
-## Test [link](./Docker-compose/README.md)
+## To know more about our genetic algorithm - [link](https://github.com/Cerclique/Docker-compose/blob/4f908fb568e48f9e61ba763fd7495d262d69672e/README.md)
