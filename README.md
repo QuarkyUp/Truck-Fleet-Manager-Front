@@ -34,10 +34,17 @@ Install dependencies :
 ### Backend 
 Start docker-compose which contains json-api, mongodb and finance microservice using :
 * `cd Docker-compose/`
-* `docker-compose up` (ctrl + c for stopping)
+* `docker-compose up` (ctrl + c for stopping)  
+
 Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Lyon) using :
-* start=[Bordeaux|Lille|Lyon|Marseille|Nantes|Paris|Toulouse]
-* end=[Bordeaux|Lille|Lyon|Marseille|Nantes|Paris|Toulouse]
+* Bordeaux
+* Lille
+* Lyon
+* Marseille
+* Nantes
+* Paris
+* Toulouse
+as *start* and *end* attribute in the URL
 
 ### Frontend
 Visit your app at [http://localhost:4200](http://localhost:4200) using :
