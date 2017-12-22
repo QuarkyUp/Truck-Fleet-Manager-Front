@@ -2,7 +2,6 @@
 
 Our application propose FMaaS (Fleet Manager as a Service).
 
-<<<<<<< HEAD
 Our backend is able to compute the best path for your trucks in order to maximize profit and lower travelled distance.
 We extensively use genetic algorithm to make it happen.
 
