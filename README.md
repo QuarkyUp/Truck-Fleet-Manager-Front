@@ -2,11 +2,15 @@
 
 Our application propose FMaaS (Fleet Manager as a Service).
 
+<<<<<<< HEAD
 Our backend is able to compute the best path for your trucks in order to maximize profit and lower travelled distance.
 We extensively use genetic algorithm to make it happen.
 
 As for our backend, we use json-api and mongodb to manage our API's and your trucks data.
 Our frontend is a web application based on the Ember framework. We use Google Maps API in order to display the datas on screen and Bootstrap beautify it.
+
+**Project not completed** : nous souhaitons continuer (un peu) le développement du projet
+
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
