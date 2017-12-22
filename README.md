@@ -27,7 +27,7 @@ CD to the cloned repository using :
 * `cd Truck-Fleet-Manager-Front`
 
 Install dependencies :
-* `yarn`
+* `yarn` or `npm install`
 
 ## Running / Development
 
