@@ -15,6 +15,7 @@ export default Component.extend({
   selectedDestination: [],
   returnedPath: [],
   originTruckList: null,
+  destination_Juan: '',
   oroginTruckListFake: [
     {
       Name:'David',
@@ -74,6 +75,11 @@ export default Component.extend({
     displayTruckPathOnMap() {
       console.log('Display');
       console.log(this.get('returnedPath'));
+
+    },
+    destWritten() {
+      console.log(this.get('destination_Juan'));
+      console.log('test');
 
     }
   }
