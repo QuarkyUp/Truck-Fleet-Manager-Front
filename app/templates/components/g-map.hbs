@@ -11,6 +11,40 @@
       {{name}}
     {{/power-select-multiple}}
     --}}
+
+    {{!--
+    {{#bs-accordion as |acc|}}
+      {{#each oroginTruckListFake as |truckOriginFake|}}
+        {{#acc.item value=truckOriginFake.Name title=truckOriginFake.Name}}
+          <table class="table-fill">
+            <tbody class="table-hover">
+            <tr>
+              <td class="text-left">{{truckOriginFake.City}}</td>
+              <td class="text-left">
+                {{#power-select selected=selectedDestination options=destinationList onchange=(action "selectDestination") as |name| }}
+                  {{name}}
+                {{/power-select}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        {{/acc.item}}
+      {{/each}}
+    {{/bs-accordion}}
+    --}}
+
+    {{#bs-accordion as |acc|}}
+      {{#each oroginTruckListFake as |truckOriginFake|}}
+        {{#acc.item value=truckOriginFake.Name title=truckOriginFake.Name}}
+          <label for={{concat 'origin_' truckOriginFake.Name}}>Origin</label>
+          {{input type="text" id=(concat 'origin_' truckOriginFake.Name) name=(concat 'origin_' truckOriginFake.Name) placeholder=truckOriginFake.City disabled=true}}
+
+          <label for={{truckOriginFake.Name}}>Select a destination</label>
+          {{input type="text" id=truckOriginFake.Name name=truckOriginFake.Name}}
+        {{/acc.item}}
+      {{/each}}
+    {{/bs-accordion}}
+
     {{#power-select selected=selectedDestination options=destinationList onchange=(action "selectDestination") as |name| }}
       {{name}}
     {{/power-select}}

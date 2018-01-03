@@ -14,14 +14,40 @@ export default Component.extend({
   selectedTruckList: [],
   selectedDestination: [],
   returnedPath: [],
+  originTruckList: null,
+  oroginTruckListFake: [
+    {
+      Name:'David',
+      City:'Paris',
+      lat: 48.864716,
+      lng: 2.349014
+    },
+    {
+      Name:'Juan',
+      City:'Brest',
+      lat: 52.097622,
+      lng: 23.734051
+    },
+    {
+      Name:'Robert',
+      City:'Bordeaux',
+      lat: 44.836151,
+      lng: -0.580816
+    },
+  ],
   customOptions: computed(function() {
     if (google) {
       return { mapTypeId: google.maps.MapTypeId.ROADMAP};
     }
   }),
-  orInit: Ember.on('init', () => {
-
-  }),
+  init() {
+    this._super(...arguments);
+    Ember.$.getJSON('http://localhost:1337/kiwi').then(result => {
+      this.set('originTruckList', result);
+      console.log(this.get('originTruckList'));
+    });
+  }
+  ,
   actions: {
     selectDestination(selectedDestination) {
       this.set('selectedDestination', selectedDestination);
