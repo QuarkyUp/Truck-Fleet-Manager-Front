@@ -16,7 +16,9 @@ export default Component.extend({
   returnedPath: [],
   originTruckList: null,
   destination_Juan: '',
-  oroginTruckListFake: [
+  destination_David: '',
+  destination_Robert: '',
+  originTruckListFake: [
     {
       Name:'David',
       City:'Paris',
@@ -60,16 +62,30 @@ export default Component.extend({
     },
     pullTruckStartPosition() {
       console.log('Pull');
-      if (this.get('selectedDestination').length == 0) {
-        window.alert('Please select a destination');
-        return;
-      }
+      console.log(this.get('selectedDestination'));
       all(this.get('selectedDestination').map(city => {
         return Ember.$.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyA8PIvLl5iLB3iCwRdiPLQTFV68Btw_RjY').then(result => result.results[0]);
       })).then((...res) => {
         let locationData = res[0];
         let result = locationData.map(obj => obj.geometry.location);
         this.set('returnedPath', result);
+        console.log(this.get('returnedPath'));
+        let finalMov = [
+          {
+            destination: { lat: result[1].lat, lng: result[1].lng },
+            origin: { lat: this.get('originTruckListFake')[0].lat, lng: this.get('originTruckListFake')[0].lng }
+          },
+          {
+            destination: { lat: result[0].lat, lng: result[0].lng },
+            origin: { lat: this.get('originTruckListFake')[1].lat, lng: this.get('originTruckListFake')[1].lng }
+          },
+          {
+            destination: { lat: result[2].lat, lng: result[2].lng },
+            origin: { lat: this.get('originTruckListFake')[2].lat, lng: this.get('originTruckListFake')[2].lng }
+          }
+        ];
+        console.log(finalMov);
+        this.set('finalPath', finalMov);
       });
     },
     displayTruckPathOnMap() {
@@ -78,9 +94,8 @@ export default Component.extend({
 
     },
     destWritten() {
-      console.log(this.get('destination_Juan'));
-      console.log('test');
-
+      let destArray = [this.get('destination_Juan'), this.get('destination_David'), this.get('destination_Robert')];
+      this.set('selectedDestination', destArray);
     }
   }
 });

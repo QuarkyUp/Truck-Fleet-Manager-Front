@@ -14,7 +14,7 @@
 
     {{!--
     {{#bs-accordion as |acc|}}
-      {{#each oroginTruckListFake as |truckOriginFake|}}
+      {{#each originTruckListFake as |truckOriginFake|}}
         {{#acc.item value=truckOriginFake.Name title=truckOriginFake.Name}}
           <table class="table-fill">
             <tbody class="table-hover">
@@ -34,13 +34,13 @@
     --}}
 
     {{#bs-accordion as |acc|}}
-      {{#each oroginTruckListFake as |truckOriginFake|}}
+      {{#each originTruckListFake as |truckOriginFake|}}
         {{#acc.item value=truckOriginFake.Name title=truckOriginFake.Name}}
           <label for={{concat 'origin_' truckOriginFake.Name}}>Origin</label>
           {{input type="text" id=(concat 'origin_' truckOriginFake.Name) name=(concat 'origin_' truckOriginFake.Name) placeholder=truckOriginFake.City disabled=true}}
 
           <label for={{concat 'destination' truckOriginFake.Name}}>Select a destination</label>
-          {{input value=(concat 'destination_' truckOriginFake.Name) action="destWritten" on="key-press"}}
+          {{input value=(get this (concat 'destination_' truckOriginFake.Name)) action="destWritten" on="key-up"}}
         {{/acc.item}}
       {{/each}}
     {{/bs-accordion}}
