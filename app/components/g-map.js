@@ -14,6 +14,7 @@ export default Component.extend({
   selectedTruckList: [],
   selectedDestination: [],
   returnedPath: [],
+  generatedPath:[],
   originTruckList: null,
   destination_Juan: '',
   destination_David: '',
@@ -38,6 +39,7 @@ export default Component.extend({
       lng: -0.580816
     },
   ],
+  mapMarkers: null,
   customOptions: computed(function() {
     if (google) {
       return { mapTypeId: google.maps.MapTypeId.ROADMAP};
@@ -52,14 +54,14 @@ export default Component.extend({
   }
   ,
   actions: {
-    selectDestination(selectedDestination) {
-      this.set('selectedDestination', selectedDestination);
-      console.log(this.get('selectedDestination'));
-    },
-    selectTrucks(selectedTrucks) {
-      this.set('selectedTruckList', selectedTrucks);
-      console.log(this.get('selectedTruckList'));
-    },
+    // selectDestination(selectedDestination) {
+    //   this.set('selectedDestination', selectedDestination);
+    //   console.log(this.get('selectedDestination'));
+    // },
+    // selectTrucks(selectedTrucks) {
+    //   this.set('selectedTruckList', selectedTrucks);
+    //   console.log(this.get('selectedTruckList'));
+    // },
     pullTruckStartPosition() {
       console.log('Pull');
       console.log(this.get('selectedDestination'));
@@ -87,6 +89,7 @@ export default Component.extend({
         console.log(finalMov);
         this.set('finalPath', finalMov);
       });
+
     },
     displayTruckPathOnMap() {
       console.log('Display');
@@ -96,6 +99,48 @@ export default Component.extend({
     destWritten() {
       let destArray = [this.get('destination_Juan'), this.get('destination_David'), this.get('destination_Robert')];
       this.set('selectedDestination', destArray);
+    },
+    generatePath() {
+      let bfPath = [
+        {
+          destination: this.get('destination_David'),
+          origin: this.get('originTruckListFake')[0].City
+        },
+        {
+          destination: this.get('destination_Juan'),
+          origin: this.get('originTruckListFake')[1].City
+        },
+        {
+          destination: this.get('destination_Robert'),
+          origin: this.get('originTruckListFake')[2].City
+        }
+      ];
+      const afPath = {};
+      let dynIndex = 0;
+
+      bfPath.forEach(item => {
+        Ember.$.getJSON('http://localhost:1337/algoGen?start='+ item.origin + '&end=' + item.destination).then(result => {
+          let dynString = 'dyn'.concat((dynIndex++).toString());
+          afPath[dynString].push(result.path);
+          console.log(afPath);
+        });
+      });
+      // console.log(afPath);
+      // console.log('then');
+      // console.log(afPath[Object.keys(afPath)[0]]);
+
+      for(let item of afPath){
+        console.log('item:');
+        console.log(item);
+        all(item.map(city => {
+          return Ember.$.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyA8PIvLl5iLB3iCwRdiPLQTFV68Btw_RjY').then(result => result.results[0]);
+        })).then((...res) => {
+          let locationData = res[0];
+          let result = locationData.map(obj => obj.geometry.location);
+          console.log('Processes :');
+          console.log(result);
+        });
+      }
     }
   }
 });
