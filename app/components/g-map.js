@@ -5,6 +5,7 @@ const { computed } = Ember;
 
 
 export default Component.extend({
+  gMap: Ember.inject.service(),
   lat: 47.5,
   lng: 2.33,
   zoom: 9,
@@ -40,6 +41,8 @@ export default Component.extend({
     },
   ],
   mapMarkers: null,
+  mapPolyLines: null,
+  gpsPathFinal: [],
   customOptions: computed(function() {
     if (google) {
       return { mapTypeId: google.maps.MapTypeId.ROADMAP};
@@ -100,6 +103,101 @@ export default Component.extend({
       let destArray = [this.get('destination_Juan'), this.get('destination_David'), this.get('destination_Robert')];
       this.set('selectedDestination', destArray);
     },
+    displayMarkers() {
+      // this.set('mapMarkers', Ember.A([
+      //   {
+      //     id: 'unique-marker-id',  // Recommended
+      //     lat: 33.516674497188255, // Required
+      //     lng: -86.80091857910156, // Required
+      //     infoWindow: {
+      //       content: '<p>Birmingham</p>',
+      //       visible: true
+      //     }
+      //   },
+      //   {
+      //     id: 'unique-marker-id2',  // Recommended
+      //     lat: 10.516674497188255, // Required
+      //     lng: 10.80091857910156, // Required
+      //     infoWindow: {
+      //       content: '<p>Birmingham</p>',
+      //       visible: true
+      //     }
+      //   }
+      // ]));
+
+
+
+      console.log(this.get('gpsPathFinal'));
+
+      let fin = [];
+
+      this.get('gpsPathFinal').forEach(item => {
+        let out = item.map(function(obj) {
+          return Object.keys(obj).sort().map(function(key) {
+            return obj[key];
+          });
+        });
+        // console.log(out);
+        fin.push(out);
+      });
+
+      console.log('after');
+      console.log(fin[0]);
+
+      this.set('mapPolyLines', Ember.A([
+        {
+          id: 'unique-marker-id',  // Recommended
+          path: fin[0],
+          geodesic: true,
+          icons: [{
+            icon: {
+              path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW // BACKWARD_CLOSED_ARROW | BACKWARD_OPEN_ARROW | CIRLCE | FORWARD_OPEN_ARROW
+            },
+            offset: '100%'
+          }],
+          strokeColor: 'blue',
+          strokeOpacity: 0.7,
+          strokeWeight: 3,
+          visible: true,
+          zIndex: 999
+        },
+        {
+          id: 'unique-marker-id2',  // Recommended
+          path: fin[1],
+          geodesic: true,
+          icons: [{
+            icon: {
+              path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW // BACKWARD_CLOSED_ARROW | BACKWARD_OPEN_ARROW | CIRLCE | FORWARD_OPEN_ARROW
+            },
+            offset: '100%'
+          }],
+          strokeColor: 'red',
+          strokeOpacity: 0.7,
+          strokeWeight: 3,
+          visible: true,
+          zIndex: 999
+        },
+        {
+          id: 'unique-marker-id3',  // Recommended
+          path: fin[2],
+          geodesic: true,
+          icons: [{
+            icon: {
+              path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW // BACKWARD_CLOSED_ARROW | BACKWARD_OPEN_ARROW | CIRLCE | FORWARD_OPEN_ARROW
+            },
+            offset: '100%'
+          }],
+          strokeColor: 'green',
+          strokeOpacity: 0.7,
+          strokeWeight: 3,
+          visible: true,
+          zIndex: 999
+        }
+      ]));
+
+      this.get('gMap').maps.refresh('my-map');
+
+    },
     generatePath() {
       let bfPath = [
         {
@@ -129,8 +227,9 @@ export default Component.extend({
               })).then((...res) => {
                 let locationData = res[0];
                 let result = locationData.map(obj => obj.geometry.location);
-                console.log(result);
+                // console.log(result);
                 gpsPath.push(result);
+                this.get('gpsPathFinal').push(result);
               });
             });
           }
