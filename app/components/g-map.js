@@ -28,9 +28,9 @@ export default Component.extend({
     },
     {
       Name:'Juan',
-      City:'Brest',
-      lat: 52.097622,
-      lng: 23.734051
+      City:'Toulouse',
+      lat: 43.6022,
+      lng: 1.4440
     },
     {
       Name:'Robert',
@@ -115,32 +115,27 @@ export default Component.extend({
           origin: this.get('originTruckListFake')[2].City
         }
       ];
-      const afPath = {};
-      let dynIndex = 0;
+
+      const afPath = [];
+      const gpsPath = [];
 
       bfPath.forEach(item => {
         Ember.$.getJSON('http://localhost:1337/algoGen?start='+ item.origin + '&end=' + item.destination).then(result => {
-          let dynString = 'dyn'.concat((dynIndex++).toString());
-          afPath[dynString].push(result.path);
-          console.log(afPath);
+          afPath.push(result.path);
+          if (afPath.length === 3) {
+            afPath.forEach(item =>{
+              all(item.map(city => {
+                return Ember.$.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyA8PIvLl5iLB3iCwRdiPLQTFV68Btw_RjY').then(result => result.results[0]);
+              })).then((...res) => {
+                let locationData = res[0];
+                let result = locationData.map(obj => obj.geometry.location);
+                console.log(result);
+                gpsPath.push(result);
+              });
+            });
+          }
         });
       });
-      // console.log(afPath);
-      // console.log('then');
-      // console.log(afPath[Object.keys(afPath)[0]]);
-
-      for(let item of afPath){
-        console.log('item:');
-        console.log(item);
-        all(item.map(city => {
-          return Ember.$.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + city + '&key=AIzaSyA8PIvLl5iLB3iCwRdiPLQTFV68Btw_RjY').then(result => result.results[0]);
-        })).then((...res) => {
-          let locationData = res[0];
-          let result = locationData.map(obj => obj.geometry.location);
-          console.log('Processes :');
-          console.log(result);
-        });
-      }
     }
   }
 });
