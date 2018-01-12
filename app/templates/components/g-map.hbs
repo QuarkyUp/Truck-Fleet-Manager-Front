@@ -1,37 +1,8 @@
 {{g-maps name="my-map" lat=lat lng=lng zoom=zoom markers=mapMarkers polylines=mapPolyLines}}
 
-
-
 <div id="container" class="flexChild rowParent">
 
   <div id="rowChild20481" class="flexChild">
-    {{!--
-    {{#power-select-multiple options=truckList selected=selectedTruckList placeholder="Select some trucks..."
-                             onchange=(action "selectTrucks") as |name| }}
-      {{name}}
-    {{/power-select-multiple}}
-    --}}
-
-    {{!--
-    {{#bs-accordion as |acc|}}
-      {{#each originTruckListFake as |truckOriginFake|}}
-        {{#acc.item value=truckOriginFake.Name title=truckOriginFake.Name}}
-          <table class="table-fill">
-            <tbody class="table-hover">
-            <tr>
-              <td class="text-left">{{truckOriginFake.City}}</td>
-              <td class="text-left">
-                {{#power-select selected=selectedDestination options=destinationList onchange=(action "selectDestination") as |name| }}
-                  {{name}}
-                {{/power-select}}
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        {{/acc.item}}
-      {{/each}}
-    {{/bs-accordion}}
-    --}}
 
     {{#bs-accordion as |acc|}}
       {{#each originTruckListFake as |truckOriginFake|}}
@@ -44,13 +15,6 @@
         {{/acc.item}}
       {{/each}}
     {{/bs-accordion}}
-
-    {{!--
-    {{#power-select selected=selectedDestination options=destinationList onchange=(action "selectDestination") as |name| }}
-      {{name}}
-    {{/power-select}}
-    --}}
-
   </div>
 
   <div id="rowChild23096" class="flexChild button-block">
