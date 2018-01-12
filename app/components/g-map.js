@@ -8,7 +8,7 @@ export default Component.extend({
   gMap: Ember.inject.service(),
   lat: 47.5,
   lng: 2.33,
-  zoom: 9,
+  zoom: 5,
   buttonState: "default",
   truckList: ['Paris', 'Lille', 'Lyon', 'Bordeaux', 'Brest', 'Strasbourg', 'Toulouse', 'Strasbourg'],
   destinationList: ['Paris', 'Lille', 'Lyon', 'Bordeaux', 'Brest', 'Strasbourg', 'Toulouse', 'Strasbourg'],
@@ -57,14 +57,6 @@ export default Component.extend({
   }
   ,
   actions: {
-    // selectDestination(selectedDestination) {
-    //   this.set('selectedDestination', selectedDestination);
-    //   console.log(this.get('selectedDestination'));
-    // },
-    // selectTrucks(selectedTrucks) {
-    //   this.set('selectedTruckList', selectedTrucks);
-    //   console.log(this.get('selectedTruckList'));
-    // },
     pullTruckStartPosition() {
       console.log('Pull');
       console.log(this.get('selectedDestination'));
@@ -104,29 +96,6 @@ export default Component.extend({
       this.set('selectedDestination', destArray);
     },
     displayMarkers() {
-      // this.set('mapMarkers', Ember.A([
-      //   {
-      //     id: 'unique-marker-id',  // Recommended
-      //     lat: 33.516674497188255, // Required
-      //     lng: -86.80091857910156, // Required
-      //     infoWindow: {
-      //       content: '<p>Birmingham</p>',
-      //       visible: true
-      //     }
-      //   },
-      //   {
-      //     id: 'unique-marker-id2',  // Recommended
-      //     lat: 10.516674497188255, // Required
-      //     lng: 10.80091857910156, // Required
-      //     infoWindow: {
-      //       content: '<p>Birmingham</p>',
-      //       visible: true
-      //     }
-      //   }
-      // ]));
-
-
-
       console.log(this.get('gpsPathFinal'));
 
       let fin = [];
@@ -137,7 +106,6 @@ export default Component.extend({
             return obj[key];
           });
         });
-        // console.log(out);
         fin.push(out);
       });
 
@@ -146,7 +114,7 @@ export default Component.extend({
 
       this.set('mapPolyLines', Ember.A([
         {
-          id: 'unique-marker-id',  // Recommended
+          id: 'unique-marker-id',
           path: fin[0],
           geodesic: true,
           icons: [{
@@ -227,7 +195,6 @@ export default Component.extend({
               })).then((...res) => {
                 let locationData = res[0];
                 let result = locationData.map(obj => obj.geometry.location);
-                // console.log(result);
                 gpsPath.push(result);
                 this.get('gpsPathFinal').push(result);
               });
