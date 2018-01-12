@@ -32,12 +32,15 @@ CD to the cloned repository using :
 Install dependencies :
 * `npm install --only=dev`
 
-## Running
+## How to use
 
-### Backend 
+### Launch the backend
+If you want the latest version of the docker submodule :
+* `git submodule update --remote --recursive`
+
 Start docker-compose which contains json-api, mongodb and finance microservice using :
 * `cd Docker-compose/`
-* `docker-compose up` (ctrl + c for stopping)  
+* `docker-compose up` (exit with _ctrl + c_)  
 
 Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Lyon) using :
 * Bordeaux
@@ -49,7 +52,7 @@ Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Ly
 * Toulouse  
 as *start* and *end* attribute in the URL
 
-### Frontend
+### Launch the backend
 Visit your app at [http://localhost:4200](http://localhost:4200) using :
 * `ember start`
 
