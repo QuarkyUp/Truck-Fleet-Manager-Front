@@ -48,9 +48,29 @@ Visit your app at [http://localhost:4200](http://localhost:4200) using :
 
 ## How it works
 
+### Use the frontend
+
+* There are multiple truck drivers displayed on the interface with fixed city starting city.
+* You must pair them with any ending city from the list below (preferably different from the starting city):
+  * `Bordeaux`
+  * `Lille`
+  * `Lyon`
+  * `Marseille`
+  * `Nantes`
+  * `Paris`
+  * `Toulouse`
+  
+* Press the `Pull Data From Server` button. It will get GPS coordinates of the different cities from Google APIs and store them for further calculation.
+
+* Press the `Generate Path using AlgoGen From Server` button. It generate the optimal path for your truck driver to take using our Genetic Algorithm API (G2API).
+
+* Press the `Display Markers` button. It will display the different path your truck drivers will take. Every path has its color to differentiate it from others.
+
 ### Genetic Algorithm
+Our Genetic Algorithm API (*G2API*) calculate the optimal path to take from one city to another.
+
 You won't have to deal with it directly, but for your information you can use our genetic algorithm API :
-* `(http://localhost:1337/algogen?start=[city]&end=[city])`
+* `http://localhost:1337/algogen?start=[city]&end=[city]`
 
 You can use any city from this list for `start` and `end` values.
 * `Bordeaux`
@@ -59,7 +79,7 @@ You can use any city from this list for `start` and `end` values.
 * `Marseille`
 * `Nantes`
 * `Paris`
-* `Toulouse ` 
+* `Toulouse` 
 
 ### Credits
 
