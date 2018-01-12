@@ -51,7 +51,7 @@ as *start* and *end* attribute in the URL
 
 ### Frontend
 Visit your app at [http://localhost:4200](http://localhost:4200) using :
-* `yarn start`
+* `ember start`
 
 ### Credits
 
