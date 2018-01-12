@@ -15,7 +15,7 @@ Our frontend is a web application based on the Ember framework. We use Google Ma
 You will need the following things properly installed on your computer.
 
 * [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM / Yarn))
+* [Node.js](https://nodejs.org/) (with NPM)
 * [docker-compose](https://docs.docker.com/compose/install/) (with Docker)
 
 ## Installation
@@ -23,11 +23,14 @@ You will need the following things properly installed on your computer.
 Clone this repository with its submodules (Backend as Docker-Compose) recursively using :
 * `git clone --recursive https://github.com/QuarkyUp/Truck-Fleet-Manager-Front/`
 
+Update submodule
+* `git submodule update --remote --recursive`
+
 CD to the cloned repository using :
 * `cd Truck-Fleet-Manager-Front`
 
 Install dependencies :
-* `yarn` or `npm install`
+* `npm install --only=dev`
 
 ## Running
 
