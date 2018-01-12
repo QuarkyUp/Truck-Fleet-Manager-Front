@@ -67,7 +67,7 @@ Visit your app at [http://localhost:4200](http://localhost:4200) using :
 * Press the `Display Markers` button. It will display the different path your truck drivers will take. Every path has its color to differentiate it from others.
 
 ### Genetic Algorithm
-Our Genetic Algorithm API (*G2API*) calculate the optimal path to take from one city to another.
+Our Genetic Algorithm API (**G2API**) calculate the optimal path to take from one city to another.
 
 You won't have to deal with it directly, but for your information you can use our genetic algorithm API :
 * `http://localhost:1337/algogen?start=[city]&end=[city]`
