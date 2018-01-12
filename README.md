@@ -26,7 +26,7 @@ Clone this repository with its submodules (Backend as Docker-Compose) recursivel
 Update submodule
 * `git submodule update --remote --recursive`
 
-CD to the cloned repository using :
+Change to the cloned repository using :
 * `cd Truck-Fleet-Manager-Front`
 
 Install dependencies :
