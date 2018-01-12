@@ -1,6 +1,6 @@
 # Truck-Fleet-Manager
 
-Our application propose FMaaS (Fleet Manager as a Service).
+Our application propose **FMaaS** (Fleet Manager as a Service).
 
 Our backend is able to compute the best path for your trucks in order to maximize profit and lower travelled distance.
 We extensively use genetic algorithm to make it happen.
@@ -42,19 +42,24 @@ Start docker-compose which contains json-api, mongodb and finance microservice u
 * `cd Docker-compose/`
 * `docker-compose up` (exit with _ctrl + c_)  
 
-Visit our algogen result [here](http://localhost:1337/algogen?start=Paris&end=Lyon) using :
-* Bordeaux
-* Lille
-* Lyon
-* Marseille
-* Nantes
-* Paris
-* Toulouse  
-as *start* and *end* attribute in the URL
-
-### Launch the backend
+### Launch the frontend
 Visit your app at [http://localhost:4200](http://localhost:4200) using :
 * `ember start`
+
+## How it works
+
+### Genetic Algorithm
+You won't have to deal with it directly, but for your information you can use our genetic algorithm API :
+* `(http://localhost:1337/algogen?start=[city]&end=[city])`
+
+You can use any city from this list for `start` and `end` values.
+* `Bordeaux`
+* `Lille`
+* `Lyon`
+* `Marseille`
+* `Nantes`
+* `Paris`
+* `Toulouse ` 
 
 ### Credits
 
