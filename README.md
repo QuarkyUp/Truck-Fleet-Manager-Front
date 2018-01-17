@@ -31,6 +31,7 @@ Change to the cloned repository using :
 
 Install dependencies :
 * `npm install --only=dev`
+* `npm install -g ember-cli`
 
 ## How to use
 
@@ -44,7 +45,7 @@ Start docker-compose which contains json-api, mongodb and finance microservice u
 
 ### Launch the frontend
 Visit your app at [http://localhost:4200](http://localhost:4200) using :
-* `ember start`
+* `ember serve`
 
 ## How it works
 
